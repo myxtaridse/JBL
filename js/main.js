@@ -3,25 +3,16 @@ const navMenu = document.getElementById('nav-menu'),
       navToggle = document.getElementById('nav-toggle'),
       navClose = document.getElementById('nav-close')
 
-if(navToggle){
-    navToggle.addEventListener('click', () =>{
-        navMenu.classList.add('show-menu')
-    })
-}
+navToggle?.addEventListener('click', () =>{
+    navMenu.classList.add('show-menu')
+})
 
-if(navClose){
-    navClose.addEventListener('click', () =>{
-        navMenu.classList.remove('show-menu')
-    })
-}
-/*============== REMOVE MENU MOBILE (нажатие на пункт из меню -> выходит из меню)===============*/
-const navLink = document.querySelectorAll('.nav-link')
-
-const linkAction = () =>{
-    const navMenu = document.getElementById('nav-menu')
+navClose?.addEventListener('click', () =>{
     navMenu.classList.remove('show-menu')
-}
-navLink.forEach(n => n.addEventListener('click', linkAction))
+})
+/*============== REMOVE MENU MOBILE (нажатие на пункт из меню -> выходит из меню)===============*/
+const navLinks = document.querySelectorAll('.nav-link')
+navLinks.forEach(nLink => nLink.addEventListener('click', () => navMenu.classList.remove('show-menu')))
 
 /*============== ADD BLUR HEADER ===============*/
 const blurHeader = () =>{
@@ -54,9 +45,7 @@ const scrollUp = () =>{
 window.addEventListener('scroll', scrollUp)
 
 /*============== SCROLL SECTIONS ACTIVE LINK ===============*/
-const sections = document.querySelectorAll('section[id]')
-
-const scrollActive = () =>{
+const scrollActive = (sections) =>{
     const scrollDown = window.scrollY
 
     sections.forEach(current =>{
@@ -72,7 +61,8 @@ const scrollActive = () =>{
         }
     })
 }
-window.addEventListener('scroll', scrollActive)
+const sections = document.querySelectorAll('section')
+window.addEventListener('scroll', () => scrollActive(sections))
 
 /*============== SCROLL REVEAL ANIMATION ===============*/
 const sr = ScrollReveal({
